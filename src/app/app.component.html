@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+  <hr/>
+  <h1>Two Way Data Binding: </h1>
+  <div class="form-group">
+    <label for="name">Email address</label>
+    <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Name">
+  </div>
+  <div class="well">Hello {{name}}</div>
+  <hr/>
+  <h1>Styling Example</h1>
+
+  <div class="redText">Color of this text is Red.</div>
+
+</div>
