@@ -36,7 +36,7 @@
 
         <!-- Normal Mode -->
         <tr>
-          <td>{{user.name}}</td>
+          <td (click)="alertName(user.name)">{{user.name}}</td>
           <td>{{user.address}}</td>
           <td>{{user.phone_number}}</td>
           <td>
