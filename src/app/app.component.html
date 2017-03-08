@@ -5,54 +5,33 @@
   <hr/>
   <h1>Two Way Data Binding: </h1>
   <div class="form-group">
-    <label for="name">Email address</label>
+    <label for="name">Name</label>
     <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Name">
+    <label for="address">Address</label>
+    <input [(ngModel)]="address" type="text" class="form-control" id="address" placeholder="Address">
+    <label for="name">Phone</label>
+    <input [(ngModel)]="phone_number" type="text" class="form-control" id="phone_number" placeholder="Phone Number">
   </div>
-  <div class="well">Hello {{name}}</div>
-  <hr/>
-  <h1>Styling Example</h1>
-  <div class="redText">Color of this text is Red.</div>
-
+  <button class="btn btn-danger" (click)="addData();">Submit</button>
   <hr/>
   <div>
-    <div class="panel panel-primary">
-      <div class="panel-heading"> <h3 class="panel-title"> CRUD Example </h3> </div>
-
-      <table class="table table-hover">
+        <table class="table table-hover">
         <thead>
           <tr>
             <th>Name</th>
             <th>Address</th>
             <th>Phone Number</th>
             <th>Status</th>
-            <th></th>
-            <th *ngIf="users.length > 0"></th>
           </tr>
         </thead>
 
-        <tbody *ngFor="let user of users" [ngSwitch]="user.state">
-
-
-
-        <!-- Normal Mode -->
-        <tr>
-          <td (click)="alertName(user.name)">{{user.name}}</td>
-          <td>{{user.address}}</td>
-          <td>{{user.phone_number}}</td>
-          <td>
-            <div *ngSwitchCase="1">Live</div>
-            <div *ngSwitchCase="0">Inactive</div>
-          </td>
-          <td>
-            <input type="button" class="btn btn-primary" value="Edit" />
-          </td>
-          <td>
-            <input type="button" class="btn btn-danger" value="Delete" />
-          </td>
-        </tr>
+        <tbody *ngFor="let user of users">
+          <tr>
+            <td (click)="alertName(user.name)">{{user.name}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phone_number}}</td>
+          </tr>
         </tbody>
       </table>
-    </div>
-  </div>
 
 </div>

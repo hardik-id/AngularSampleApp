@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
   alertName(userName){
     alert('Selected user is '+ userName);
   }
+
+  addData(){
+    console.log(newUser);
+  }
 }
 
 export interface User {
