@@ -5,13 +5,23 @@
   <hr/>
   <h1>Two Way Data Binding: </h1>
   <div class="form-group">
-    <label for="name">Email address</label>
+    <label for="name">Name</label>
     <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Name">
+    <label for="address">Address</label>
+    <input [(ngModel)]="address" type="text" class="form-control" id="address" placeholder="Address">
   </div>
+  <button (click)="addToList();">Submit</button>
   <div class="well">Hello {{name}}</div>
   <hr/>
   <h1>Styling Example</h1>
 
-  <div class="redText">Color of this text is Red.</div>
+  <div class="redText">List:</div>
 
+
+  <dl class="dl-horizontal">
+    <div  *ngFor="let user of users">
+      <dt>{{user.name}}</dt>
+      <dd>{{user.address}}</dd>
+    </div>
+  </dl>
 </div>
