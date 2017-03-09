@@ -15,17 +15,20 @@ export class AppComponent implements OnInit {
   public users: Array<User> = [];
 
   ngOnInit(): void {
-    console.log('test Working');
-    this.users.push({name:'Sandeep', address: 'Address 1', phone_number: 1234});
-    this.users.push({name:'Amol', address: 'Address 2', phone_number:232323});
+    console.log('Initializing App Component.');
+    this.users.push({name: 'Sandeep', address: 'Address 1', phone_number: 1234});
+    this.users.push({name: 'Amol', address: 'Address 2', phone_number: 232323});
   }
 
-  addToList(){
-    this.users.push({name:this.newUser.name, address: this.newUser.address, phone_number:this.newUser.phone_number});
+  addToList() {
+    this.users.push({name: this.newUser.name, address: this.newUser.address, phone_number: this.newUser.phone_number});
   }
 
-  deleteUser(i){
+  deleteUser(i) {
     this.users.splice(i, 1);
+  }
+  clearNewUser() {
+    this.newUser = {};
   }
 }
 

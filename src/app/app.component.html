@@ -2,6 +2,8 @@
   <h1>
     {{title}}
   </h1>
+  <hr />
+  <Dashboard [user]="newUser" *ngIf="newUser.name" (cancleUser)="clearNewUser();"></Dashboard>
   <hr/>
   <h1>Two Way Data Binding: </h1>
   <div class="form-group">
@@ -79,5 +81,4 @@
       </table>
     </div>
   </div>
-
 </div>
