@@ -5,14 +5,14 @@
   <hr/>
   <h1>Two Way Data Binding: </h1>
   <div class="form-group">
-    <label for="name">Email address</label>
-    <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Name">
+    <label for="name">Name</label>
+    <input [(ngModel)]="newUser.name" type="text" class="form-control" id="name" placeholder="Name">
+    <label for="name">Address</label>
+    <input [(ngModel)]="newUser.address" type="text" class="form-control" id="address" placeholder="Address">
+    <label for="name">Phone Number</label>
+    <input [(ngModel)]="newUser.phone_number" type="text" class="form-control" id="name" placeholder="Name">
   </div>
-  <div class="well">Hello {{name}}</div>
-  <hr/>
-  <h1>Styling Example</h1>
-  <div class="redText">Color of this text is Red.</div>
-
+  <button type="submit" class="btn btn-primary" (click)="addToList();">Add to List</button>
   <hr/>
   <div>
     <div class="panel panel-primary">
@@ -24,32 +24,57 @@
             <th>Name</th>
             <th>Address</th>
             <th>Phone Number</th>
-            <th>Status</th>
+            <th>Action</th>
             <th></th>
             <th *ngIf="users.length > 0"></th>
           </tr>
         </thead>
 
-        <tbody *ngFor="let user of users" [ngSwitch]="user.state">
+        <tbody *ngFor="let user of users; let i = index;"  [ngSwitch]="user.state">
 
 
 
         <!-- Normal Mode -->
-        <tr>
+        <tr *ngSwitchDefault>
           <td (click)="alertName(user.name)">{{user.name}}</td>
           <td>{{user.address}}</td>
           <td>{{user.phone_number}}</td>
           <td>
-            <div *ngSwitchCase="1">Live</div>
-            <div *ngSwitchCase="0">Inactive</div>
+            <button type="submit" (click)="user.state='edit'" class="btn btn-primary">Edit</button>
           </td>
           <td>
-            <input type="button" class="btn btn-primary" value="Edit" />
-          </td>
-          <td>
-            <input type="button" class="btn btn-danger" value="Delete" />
+            <button type="button" (click)="user.state='delete'" class="btn btn-danger">Delete</button>
           </td>
         </tr>
+
+
+
+
+        <!-- Edit Mode -->
+        <tr *ngSwitchCase="'edit'">
+          <td><input [(ngModel)]="user.name" type="text"/></td>
+          <td><input [(ngModel)]="user.address" type="text"/></td>
+          <td>{{user.phone_number}}</td>
+          <td>
+            <button type="submit" (click)="user.state=''" class="btn btn-info">Save</button>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+        <!-- Delete Mode -->
+        <tr class="danger" *ngSwitchCase="'delete'">
+          <td (click)="alertName(user.name)">{{user.name}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.phone_number}}</td>
+          <td>
+            <button type="submit" (click)="deleteUser(i)" class="btn btn-danger">Confirm Delete</button>
+          </td>
+          <td>
+            <button type="submit" (click)="user.state=''" class="btn btn-default">Cancel</button>
+          </td>
+        </tr>
+
         </tbody>
       </table>
     </div>
