@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AppService} from "./app.service.ts";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   public title = 'Sample Angular Application!';
+  public data;
+
+  constructor(private appService: AppService){
+  }
 
   @Input()
   public newUser: User = {};
@@ -18,6 +23,17 @@ export class AppComponent implements OnInit {
     console.log('Initializing App Component.');
     this.users.push({name: 'Sandeep', address: 'Address 1', phone_number: 1234});
     this.users.push({name: 'Amol', address: 'Address 2', phone_number: 232323});
+    this.appService.getData().subscribe(data => {
+      this.data = data;
+      this.processResult();
+    });
+  }
+  processResult(){
+    console.log(this.data);
+    this.users=[];
+    for(var k in this.data) {
+      this.users.push(this.data[k]);
+    }
   }
 
   addToList() {
@@ -30,6 +46,8 @@ export class AppComponent implements OnInit {
   clearNewUser() {
     this.newUser = {};
   }
+
+
 }
 
 export interface User {
